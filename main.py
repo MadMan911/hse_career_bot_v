@@ -50,17 +50,20 @@ def handle_none_type(message):
     print(message.chat.id)
     bot.register_next_step_handler(message, reg_name)
 
-
 @bot.message_handler(commands=['start'])
 def start(message):
-    if message.chat.id in update_students().keys():
-        bot.send_message(message.chat.id, 'Ты уже зарегистрировался! Хочешь внести изменения в свой профиль?',
-                         reply_markup=keyboard_changes)
-        update_phase(message, CHANGE_REG_1)
-        return
-    bot.send_message(message.chat.id, welcome, parse_mode='HTML')
-    print(f'Пользователь {message.from_user.username} запустил бота')
-    bot.register_next_step_handler(message, reg_name)
+    username = message.from_user.username
+    bot.reply_to(message, f'Hello, {username}')
+# @bot.message_handler(commands=['start'])
+# def start(message):
+#     if message.chat.id in update_students().keys():
+#         bot.send_message(message.chat.id, 'Ты уже зарегистрировался! Хочешь внести изменения в свой профиль?',
+#                          reply_markup=keyboard_changes)
+#         update_phase(message, CHANGE_REG_1)
+#         return
+#     bot.send_message(message.chat.id, welcome, parse_mode='HTML')
+#     print(f'Пользователь {message.from_user.username} запустил бота')
+#     bot.register_next_step_handler(message, reg_name)
 
 
 def reg_name(message):
