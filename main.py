@@ -8,8 +8,18 @@ import traceback
 from create_database import create_database
 from data.students import Student
 
+import logging
+from flask import Flask, request
+
 
 bot = telebot.TeleBot(TOKEN)
+
+@server.route(f'/{TOKEN}', methods=['POST'])
+def redirect_message():
+    json_string = request.get_data().decode('utf-8')
+    update = telebot.types.Update.de_json(json_string)
+    bot.process_new_updates([update])
+    return '!', 200
 
 
 @bot.callback_query_handler(func=lambda call: call.data == 'go_to_final')
@@ -276,21 +286,24 @@ def assess_1(call):
 
 
 if __name__ == '__main__':
-    set_env_functions(bot)
-    db_is_created = os.path.exists(DATABASE_NAME)
-    if not db_is_created:
-        create_database()
-    print('Бот успешно запущен')
-    while True:
-        try:
-            Session.rollback()
-            bot.infinity_polling(timeout=None)
-        except Exception as e:
-            import time
-            traceback.print_exc()
-            bot.send_message(426184690, traceback.format_exc()) # отпарвку мне сдеалть
-            del bot
-            bot = telebot.TeleBot(real)
-            Session.rollback()
-            time.sleep(5)
+    bot.remove_webhook()
+    bot.set_webhook(url=APP_URL)
+    server.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    # set_env_functions(bot)
+    # db_is_created = os.path.exists(DATABASE_NAME)
+    # if not db_is_created:
+    #     create_database()
+    # print('Бот успешно запущен')
+    # while True:
+    #     try:
+    #         Session.rollback()
+    #         bot.infinity_polling(timeout=None)
+    #     except Exception as e:
+    #         import time
+    #         traceback.print_exc()
+    #         bot.send_message(426184690, traceback.format_exc()) # отпарвку мне сдеалть
+    #         del bot
+    #         bot = telebot.TeleBot(real)
+    #         Session.rollback()
+    #         time.sleep(5)
             
