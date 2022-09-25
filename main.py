@@ -11,6 +11,11 @@ from data.students import Student
 import logging
 from flask import Flask, request
 
+bot = telebot.TeleBot(TOKEN)
+server = Flask(__name__)
+logger = telebot.logger
+logger.setLevel(logging.DEBUG)
+
 
 bot = telebot.TeleBot(TOKEN)
 
