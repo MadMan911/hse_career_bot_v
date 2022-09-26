@@ -9,6 +9,56 @@ def set_env_functions(real_bot):
     global bot
     bot = real_bot
 
+def try_to_buy_merch(message, merch_name):
+    student = Session.query(Student).get(message.chat.id)
+    balance = int(student.balance)
+
+    if student.merch_buy_ability_amt == 0:
+            bot.send_message(message.chat.id, 'Даже не думай наебать систему! больше одной шмотки купить нельзя', reply_markup=keyboard_back_menu)
+    else:
+        if merch_name.lower() == 'cup':
+            if balance < cup_price:
+                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+            else:
+                student.balance -= cup_price
+                student.merch_buy_ability_amt -= 1 
+                student.bought_merch += f'<b>Бешеная кружка 💥</b>\n'
+                Session.commit()
+                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть: \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+    
+        elif merch_name.lower() == 'tshirt':
+            if balance < cup_price:
+                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+            else:
+                student.balance -= cup_price
+                student.merch_buy_ability_amt -= 1 
+                student.bought_merch += f'<b>Отжаренная футболка 🔥</b>\n'
+                Session.commit()
+                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+    
+        elif merch_name.lower() == 'hudi':
+            if balance < cup_price:
+                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+            else:
+                student.balance -= cup_price
+                student.merch_buy_ability_amt -= 1 
+                student.bought_merch += f'<b>Заросшее худи 🌲</b>\n'
+                Session.commit()
+                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+    
+        elif merch_name.lower() == 'shopper':
+            if balance < cup_price:
+                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+            else:
+                student.balance -= cup_price
+                student.merch_buy_ability_amt -= 1 
+                student.bought_merch += f'<b>Шоппер, в который насрали 💩</b>\n'
+                Session.commit()
+                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+    
+    update_phase(message, READY)
+    return
+   
 
 def new_name(message):
     if message.text == 'Что ты хочешь изменить?':

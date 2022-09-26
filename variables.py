@@ -8,8 +8,9 @@ Session = session()
 
 default_balance = 2
 
-REG, GIVE_PROMO, ENTER_PROMO, READY, CHANGE_REG_1, CHANGE_REG_2, READY_2, ASSESS, MAKE_ORDER = range(9)
+REG, GIVE_PROMO, ENTER_PROMO, READY, CHANGE_REG_1, CHANGE_REG_2, READY_2, ASSESS, MAKE_ORDER, BUY_MERCH_1, BUY_MERCH_2 = range(11)
 mail_pattern = '[a-zA-Z0-9\-._]{3,25}@(gmail|mail|ya|yandex|yahoo|outlook|hse|edu\.hse|)\.(ru|net|com|ua)'
+cup_price, tshirt_price, hudi_price, shoper_price = 1, 1, 1, 1
 # READY_2 - промежуточное состояние, откуда можно перейти к оценке компаний + посмотреть каталог мерча
 
 
@@ -61,6 +62,8 @@ about_coins = 'После регистрации тебе доступно {} к
 # help_message = 'По вопросам вопросам, связанным с Неделей Карьеры, пиши на почту careers@hse.ru\n' \
 #                'По вопросам работы с ботом обращайся к @koli_vera '
 
+about_clothes = 'Вы можете купить ебанутыйй мерч всего за 1000 RUB номер карты :🥺🥺🥺 <b>5536 0000 1227 7011</b> 🥺🥺🥺'
+
 keyboard_back_menu = types.InlineKeyboardMarkup()
 keyboard_back_menu.add(types.InlineKeyboardButton('В меню', callback_data='menu'))
 
@@ -71,6 +74,14 @@ keyboard_changes = types.InlineKeyboardMarkup(row_width=2)
 b1 = types.InlineKeyboardButton(text='Да', callback_data='changes_needed')
 b2 = types.InlineKeyboardButton(text='Нет', callback_data='no_changes_needed')
 keyboard_changes.add(b1, b2)
+
+keyboard_merch = types.InlineKeyboardMarkup(row_width=2)
+bm2 = types.InlineKeyboardButton(text='Кружка', callback_data='cup')
+bm3 = types.InlineKeyboardButton(text='Футболка', callback_data='tshirt')
+bm4 = types.InlineKeyboardButton(text='Худак', callback_data='hudi')
+bm5 = types.InlineKeyboardButton(text='Шопер', callback_data='shoper')
+bm6 = types.InlineKeyboardButton(text='Ниче не надо', callback_data='no_merch_needed')
+keyboard_merch.add( bm2, bm3, bm4, bm5, bm6,)
 
 
 def get_kb_companies():
@@ -105,10 +116,11 @@ b4 = types.InlineKeyboardButton(text='Мой баланс', callback_data='balan
 b5 = types.InlineKeyboardButton(text='Ввести промокод', callback_data='activate_promo')
 b6 = types.InlineKeyboardButton(text='Информация о НК', callback_data='info')
 b7 = types.InlineKeyboardButton(text='Мой профиль', callback_data='change_reg')
-keyboard_menu.add(b1, b2, b3, b4, b5, b6, b7)
+b8 = types.InlineKeyboardButton(text='Мерч', callback_data='clothes')
+keyboard_menu.add(b1, b2, b3, b4, b5, b6, b7, b8)
 
 keyboard_menu_light = types.InlineKeyboardMarkup(row_width=2)
-keyboard_menu_light.add(b1, b2, b3, b4, b6, b7)
+keyboard_menu_light.add(b1, b2, b3, b4, b6, b7, b8)
 
 
 final_intro = 'Спасибо тебе за участие в Неделе Карьеры! Ты хорошо проявил себя. Наконец-то можно обменять ' \
