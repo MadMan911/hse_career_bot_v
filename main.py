@@ -211,10 +211,10 @@ def handle_menu(call):
     elif call.data == 'clothes':
         bot.send_message(call.message.chat.id, about_clothes,  parse_mode='HTML')
         if Session.query(Student).get(call.message.chat.id).bought_merch != '':
-            bot.send_message(call.message.chat.id, f'Выбери себе ебанутый мерч! \n\n<i><b>Мерч который уже есть:</b></i>\n\n{Session.query(Student).get(call.message.chat.id).bought_merch}',
+            bot.send_message(call.message.chat.id, f'Вы уже выбрали себе самый лучший мерч! \n\n<i><b>Мерч который вы выбрали:</b></i>\n\n{Session.query(Student).get(call.message.chat.id).bought_merch}',
                                 reply_markup=keyboard_merch, parse_mode='HTML')
         else:
-            bot.send_message(call.message.chat.id, f'Выбери себе ебанутый мерч! \n\n<i><b>Мерч который уже есть:</b></i>\n\n<i>нихуя нет, так что реально выбирай</i>',
+            bot.send_message(call.message.chat.id, f'Вы еще не выбрали себе мерч! \n\n<i><b>Бегите скорее присматривать самый лучший мерч:</b></i>\n\n<i>Здесь будет ваш мерч!)</i>',
                                 reply_markup=keyboard_merch, parse_mode='HTML')
             
         update_phase(call.message, BUY_MERCH_1)
@@ -233,47 +233,47 @@ def buy_merch(call):
     
 
     if call.data == 'cup':
-        img = open('merch_images/cup.jpg', 'rb')
+        # img = open('merch_images/cup.jpg', 'rb')
         btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_cup')
         keyboard_agree.add(btn1, btn2)
 
-        bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот та самая ебанутая кружка, ну че, берем?', reply_markup=keyboard_agree)
+        # bot.send_photo(call.message.chat.id, img,)
+        bot.send_message(call.message.chat.id, 'Вот эта невероятная HSE кружка, берем?', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
     elif call.data == 'tshirt':
-        img = open('merch_images/tshirt.jpeg', 'rb')
+        # img = open('merch_images/tshirt.jpeg', 'rb')
         btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_tshirt')
         keyboard_agree.add(btn1, btn2)
 
-        bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот та самая ебанутая футболка, ну че, берем?', reply_markup=keyboard_agree)
+        # bot.send_photo(call.message.chat.id, img,)
+        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая HSE футболка, берем?', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
     elif call.data == 'hudi':
-        img = open('merch_images/hudi.jpg', 'rb')
+        # img = open('merch_images/hudi.jpg', 'rb')
         btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_hudi')
         keyboard_agree.add(btn1, btn2)
 
-        bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот то самое ебануое худи, ну че, берем?', reply_markup=keyboard_agree)
+        # bot.send_photo(call.message.chat.id, img,)
+        bot.send_message(call.message.chat.id, 'Вот то самое неотразимый HSE свитшот, берем?', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
     elif call.data == 'shoper':
-        img = open('merch_images/shopper.jpg', 'rb')
+        # img = open('merch_images/shopper.jpg', 'rb')
         btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_shopper')
         keyboard_agree.add(btn1, btn2)
 
-        bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот тот самый ебанутый шоппер, ну че, берем?', reply_markup=keyboard_agree)
+        # bot.send_photo(call.message.chat.id, img,)
+        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE шоппер, берем?', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
 
     else:
-        bot.send_message(call.message.chat.id, 'Ну и пошел нахуй', reply_markup=keyboard_back_menu)
+        bot.send_message(call.message.chat.id, 'Очень жаль ):, подумай хорошенько!', reply_markup=keyboard_back_menu)
     
     update_phase(call.message, READY)
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
@@ -287,7 +287,7 @@ def accept_buying_merch(call):
         try_to_buy_merch(call.message, call.data.split('_')[1])
     else:
         update_phase(call.message, READY)
-        bot.send_message(call.message.chat.id, 'Ты многое теряешь, братишка! Маму проверь кста', reply_markup=keyboard_back_menu)
+        bot.send_message(call.message.chat.id, 'Очень жаль ):, подумай хорошенько!', reply_markup=keyboard_back_menu)
 
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
                           text=f'{call.message.text}',
@@ -371,7 +371,7 @@ if __name__ == '__main__':
         except Exception as e:
             import time
             traceback.print_exc()
-            bot.send_message(426184690, traceback.format_exc()) # отпарвку мне сдеалть
+            bot.send_message(582648838, traceback.format_exc()) # отпарвку мне сдеалть
             del bot
             bot = telebot.TeleBot(real)
             Session.rollback()

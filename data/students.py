@@ -50,10 +50,10 @@ class Student(Base):
         self.merch_buy_ability_amt = 1
         self.bought_merch = ''
 
-    def update_wal(self):  #10 процентов счета, метод вызывается, когда поользователь переходит к оценке компаний
-        self.wal1 = int(0.1 * self.balance)
-        if self.wal1 == 0:
-            self.wal1 = 1
+    # def update_wal(self):  #10 процентов счета, метод вызывается, когда поользователь переходит к оценке компаний
+    #     self.wal1 = int(0.1 * self.balance)
+    #     if self.wal1 == 0:
+    #         self.wal1 = 1
 
     def sklonenie(self):
         numb = self.balance % 100
@@ -81,12 +81,12 @@ class Student(Base):
     def change_fio(self, new_fio):
         self.fio = new_fio
 
-    def wallets(self):
-        self.update_wal()
-        wal2 = self.balance - self.wal1
-        return f'Необходимо *распределить между компаниями:* {self.wal1} {sklonenie_func(self.wal1)}\n' \
-               f'Затем можно потратить на *мерч:* {wal2}' \
-               f' {sklonenie_func(wal2)}'
+    # def wallets(self):
+    #     self.update_wal()
+    #     wal2 = self.balance - self.wal1
+    #     return f'Необходимо *распределить между компаниями:* {self.wal1} {sklonenie_func(self.wal1)}\n' \
+    #            f'Затем можно потратить на *мерч:* {wal2}' \
+    #            f' {sklonenie_func(wal2)}'
 
 
 def sklonenie_func(number):

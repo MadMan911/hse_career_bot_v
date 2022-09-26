@@ -14,47 +14,47 @@ def try_to_buy_merch(message, merch_name):
     balance = int(student.balance)
 
     if student.merch_buy_ability_amt == 0:
-            bot.send_message(message.chat.id, 'Даже не думай наебать систему! больше одной шмотки купить нельзя', reply_markup=keyboard_back_menu)
+            bot.send_message(message.chat.id, 'К сожалению, больше одной вещи купить нельзя', reply_markup=keyboard_back_menu)
     else:
         if merch_name.lower() == 'cup':
             if balance < cup_price:
-                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+                 bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
             else:
                 student.balance -= cup_price
                 student.merch_buy_ability_amt -= 1 
-                student.bought_merch += f'<b>Бешеная кружка 💥</b>\n'
+                student.bought_merch += f'<b>Невероятная HSE кружка 💥</b>\n'
                 Session.commit()
-                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть: \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+                bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть: \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
     
         elif merch_name.lower() == 'tshirt':
             if balance < cup_price:
-                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+                 bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
             else:
                 student.balance -= cup_price
                 student.merch_buy_ability_amt -= 1 
-                student.bought_merch += f'<b>Отжаренная футболка 🔥</b>\n'
+                student.bought_merch += f'<b>крутейшая HSE футболка 🔥</b>\n'
                 Session.commit()
-                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+                bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
     
         elif merch_name.lower() == 'hudi':
             if balance < cup_price:
-                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+                 bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
             else:
                 student.balance -= cup_price
-                student.merch_buy_ability_amt -= 1 
-                student.bought_merch += f'<b>Заросшее худи 🌲</b>\n'
+                student.merch_buy_ability_amt -= 1
+                student.bought_merch += f'<b>Неотразимый HSE свитшот 🌲</b>\n'
                 Session.commit()
-                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+                bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
     
         elif merch_name.lower() == 'shopper':
             if balance < cup_price:
-                 bot.send_message(message.chat.id, 'Денег нема пиздуй на работу', reply_markup=keyboard_back_menu)
+                 bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
             else:
                 student.balance -= cup_price
                 student.merch_buy_ability_amt -= 1 
-                student.bought_merch += f'<b>Шоппер, в который насрали 💩</b>\n'
+                student.bought_merch += f'<b>Самый удобный HSE шоппер ☀</b>\n'
                 Session.commit()
-                bot.send_message(message.chat.id, f'Ну все харош мерч купил, теперь у тебя есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+                bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
     
     update_phase(message, READY)
     return
