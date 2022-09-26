@@ -39,8 +39,7 @@ class Student(Base):
         self.fio = fio
         self.user_name = user_name
         self.email = email
-        # self.balance = default_balance
-        self.balance = 5
+        self.balance = default_balance
         self.wal1 = 0
         self.phase = REG
         self.promo_code = generate_code()
@@ -48,7 +47,7 @@ class Student(Base):
         self.entered_promo_code = False
         self.assessed = False
         self.order = None
-        self.merch_buy_ability_amt = 5
+        self.merch_buy_ability_amt = 1
         self.bought_merch = ''
 
     def update_wal(self):  #10 процентов счета, метод вызывается, когда поользователь переходит к оценке компаний

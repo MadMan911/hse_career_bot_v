@@ -10,7 +10,7 @@ default_balance = 2
 
 REG, GIVE_PROMO, ENTER_PROMO, READY, CHANGE_REG_1, CHANGE_REG_2, READY_2, ASSESS, MAKE_ORDER, BUY_MERCH_1, BUY_MERCH_2 = range(11)
 mail_pattern = '[a-zA-Z0-9\-._]{3,25}@(gmail|mail|ya|yandex|yahoo|outlook|hse|edu\.hse|)\.(ru|net|com|ua)'
-cup_price, tshirt_price, hudi_price, shoper_price = 1, 1, 1, 1
+cup_price, tshirt_price, hudi_price, shoper_price = 10, 20, 30, 15
 # READY_2 - промежуточное состояние, откуда можно перейти к оценке компаний + посмотреть каталог мерча
 
 
