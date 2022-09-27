@@ -10,7 +10,7 @@ default_balance = 2
 
 REG, GIVE_PROMO, ENTER_PROMO, READY, CHANGE_REG_1, CHANGE_REG_2, READY_2, ASSESS, MAKE_ORDER, BUY_MERCH_1, BUY_MERCH_2 = range(11)
 mail_pattern = '[a-zA-Z0-9\-._]{3,25}@(gmail|mail|ya|yandex|yahoo|outlook|hse|edu\.hse|)\.(ru|net|com|ua)'
-cup_price, tshirt_price, hudi_price, shoper_price = 10, 20, 30, 15
+cup_price, tshirt_price, hudi_price, shoper_price, termocup_price, bottle_price = 10, 20, 30, 15, 15, 10
 # READY_2 - промежуточное состояние, откуда можно перейти к оценке компаний + посмотреть каталог мерча
 
 
@@ -73,11 +73,14 @@ keyboard_changes.add(b1, b2)
 
 keyboard_merch = types.InlineKeyboardMarkup(row_width=2)
 bm2 = types.InlineKeyboardButton(text='Кружка', callback_data='cup')
-bm3 = types.InlineKeyboardButton(text='Футболка', callback_data='tshirt')
-bm4 = types.InlineKeyboardButton(text='Свитшот', callback_data='hudi')
-bm5 = types.InlineKeyboardButton(text='Шопер', callback_data='shoper')
-bm6 = types.InlineKeyboardButton(text='Назад', callback_data='no_merch_needed')
-keyboard_merch.add( bm2, bm3, bm4, bm5, bm6,)
+bm3 = types.InlineKeyboardButton(text='Футболка Черная', callback_data='tshirt_black')
+bm4 = types.InlineKeyboardButton(text='Футболка Синяя', callback_data='tshirt_blue')
+bm5 = types.InlineKeyboardButton(text='Свитшот', callback_data='hudi')
+bm6 = types.InlineKeyboardButton(text='Шопер', callback_data='shoper')
+bm7 = types.InlineKeyboardButton(text='Назад', callback_data='no_merch_needed')
+bm8 = types.InlineKeyboardButton(text='Термокружка', callback_data='termocup')
+bm9 = types.InlineKeyboardButton(text='Бутылка', callback_data='bottle')
+keyboard_merch.add( bm2, bm3, bm4, bm5, bm6, bm7, bm8, bm9,)
 
 
 def get_kb_companies():
