@@ -108,7 +108,6 @@ keyboard_promo.add(types.InlineKeyboardButton(text='Да', callback_data='activa
                    types.InlineKeyboardButton(text='Нет', callback_data='skip_activate_promo'))
 
 keyboard_menu = types.InlineKeyboardMarkup(row_width=2)
-b1 = types.InlineKeyboardButton(text='Вебинары', callback_data='event_calendar')
 b2 = types.InlineKeyboardButton(text='Правила игры', callback_data='rules')
 b3 = types.InlineKeyboardButton(text='Работодатели', callback_data='companies')
 b4 = types.InlineKeyboardButton(text='Мой баланс', callback_data='balance')
@@ -116,7 +115,7 @@ b5 = types.InlineKeyboardButton(text='Ввести промокод', callback_d
 b6 = types.InlineKeyboardButton(text='Информация о НК', callback_data='info')
 b7 = types.InlineKeyboardButton(text='Мой профиль', callback_data='change_reg')
 b8 = types.InlineKeyboardButton(text='Мерч', callback_data='clothes')
-keyboard_menu.add(b1, b2, b3, b4, b5, b6, b7, b8)
+keyboard_menu.add(b2, b3, b4, b5, b6, b7, b8)
 
 keyboard_menu_light = types.InlineKeyboardMarkup(row_width=2)
 keyboard_menu_light.add(b1, b2, b3, b4, b6, b7, b8)
