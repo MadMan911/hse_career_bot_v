@@ -297,7 +297,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE термокружка, я таджик, берем?', reply_markup=keyboard_agree)
+        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE термокружка, берем?', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 

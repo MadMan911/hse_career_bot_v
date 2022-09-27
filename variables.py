@@ -80,7 +80,7 @@ bm6 = types.InlineKeyboardButton(text='Шопер', callback_data='shoper')
 bm7 = types.InlineKeyboardButton(text='Назад', callback_data='no_merch_needed')
 bm8 = types.InlineKeyboardButton(text='Термокружка', callback_data='termocup')
 bm9 = types.InlineKeyboardButton(text='Бутылка', callback_data='bottle')
-keyboard_merch.add( bm2, bm3, bm4, bm5, bm6, bm7, bm8, bm9,)
+keyboard_merch.add( bm2, bm3, bm4, bm5, bm6, bm8, bm9, bm7,)
 
 
 def get_kb_companies():

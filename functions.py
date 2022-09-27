@@ -82,7 +82,7 @@ def try_to_buy_merch(message, merch_name):
             else:
                 student.balance -= bottle_price
                 student.merch_buy_ability_amt -= 1 
-                student.bought_merch += f'<b>крутейшая не ебаться какая крутая HSE термокружка 🔥</b>\n'
+                student.bought_merch += f'<b>крутейшая HSE термокружка 🔥</b>\n'
                 Session.commit()
                 bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
     
