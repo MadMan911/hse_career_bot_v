@@ -177,7 +177,9 @@ def handle_menu(call):
         bot.send_message(call.message.chat.id, rules, reply_markup=keyboard_back, parse_mode='MarkDown')
         print(f'Пользователь {Session.query(Student).get(call.message.chat.id)} посмотрел правила игры')
     elif call.data == 'companies':
-        bot.send_message(call.message.chat.id, 'Вот список компаний, сотрудничающих с ВШБ на осенней Неделе Карьеры. '
+        bot.send_message(call.message.chat.id, 'Вот список компаний, сотрудничающих с ВШБ на осенней Неделе Карьеры. ',
+                                               'Расписание лекций:\n1C: 03.10.2022 14:15\nКРОК: 03.10.2022 15:30\nЦентр карьеры ВШБ: 03.10.2022\nСКОЛТЕХ: 04.10.2022\n Росэнергоатом: 06.10.2022'
+                                               '\nVK: 06.10.2022 15:30\nСБЕР: 06.10.2022 16:45\nАксТим (AxTeam) (Accenture): 06.10.2022 18:00',
                                                'Нажмите на кнопку, чтобы почитать про компанию подробнее. ',
                          reply_markup=get_kb_companies())
         print(f'Пользователь {Session.query(Student).get(call.message.chat.id)} посмотрел список компаний')
@@ -238,39 +240,70 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         # bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот эта невероятная HSE кружка, берем?', reply_markup=keyboard_agree)
+        bot.send_message(call.message.chat.id, 'Вот эта невероятная HSE кружка, цена <b>10 коинов</b>, берем?', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
-    elif call.data == 'tshirt':
-        # img = open('merch_images/tshirt.jpeg', 'rb')
-        btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_tshirt')
+    elif call.data == 'tshirt_black':
+        img = open('merch_images/нига-футболка.jpeg', 'rb')
+        btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_tshirtblack')
         keyboard_agree.add(btn1, btn2)
 
-        # bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая HSE футболка, берем?', reply_markup=keyboard_agree)
+        bot.send_photo(call.message.chat.id, img, )
+        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая черная HSE футболка, цена <b>20 коинов</b>, берем?',
+                         reply_markup=keyboard_agree)
+        update_phase(call.message, BUY_MERCH_2)
+        return
+
+    elif call.data == 'tshirt_blue':
+        img = open('merch_images/синяя-футболо4ка.jpeg', 'rb')
+        btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_tshirtblue')
+        keyboard_agree.add(btn1, btn2)
+
+        bot.send_photo(call.message.chat.id, img, )
+        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая синяя HSE футболка, цена <b>20 коинов</b>, берем?',
+                         reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
     elif call.data == 'hudi':
-        # img = open('merch_images/hudi.jpg', 'rb')
+        img = open('merch_images/нига-худак.jpeg', 'rb')
         btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_hudi')
         keyboard_agree.add(btn1, btn2)
 
-        # bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот то самое неотразимый HSE свитшот, берем?', reply_markup=keyboard_agree)
+        bot.send_photo(call.message.chat.id, img, )
+        bot.send_message(call.message.chat.id, 'Вот то самое неотразимый HSE свитшот, цена <b>30 коинов</b>, берем?',
+                         reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
     elif call.data == 'shoper':
-        # img = open('merch_images/shopper.jpg', 'rb')
+        img = open('merch_images/шопер-хуепер.jpeg', 'rb')
         btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_shopper')
         keyboard_agree.add(btn1, btn2)
 
-        # bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE шоппер, берем?', reply_markup=keyboard_agree)
+        bot.send_photo(call.message.chat.id, img,)
+        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE шоппер, цена <b>15 коинов</b>, берем?', reply_markup=keyboard_agree)
+        update_phase(call.message, BUY_MERCH_2)
+        return
+    elif call.data == 'bottle':
+        img = open('merch_images/бутылка-похожая-на-хуй.jpeg', 'rb')
+        btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_bottle')
+        keyboard_agree.add(btn1, btn2)
+
+        bot.send_photo(call.message.chat.id, img, )
+        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE бутылка, цена <b>10 коинов</b>, берем?', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
+    elif call.data == 'termocup':
+        img = open('merch_images/термо-ебнуться-кружка.jpeg', 'rb')
+        btn1 = types.InlineKeyboardButton(text='Да', callback_data='yes_termocup')
+        keyboard_agree.add(btn1, btn2)
+
+        bot.send_photo(call.message.chat.id, img, )
+        bot.send_message(call.message.chat.id, 'Вот та самая крутая HSE термокружка, цена <b>15 коинов</b>, берем?', reply_markup=keyboard_agree)
+        update_phase(call.message, BUY_MERCH_2)
+        return
 
     else:
         bot.send_message(call.message.chat.id, 'Очень жаль ):, подумай хорошенько!', reply_markup=keyboard_back_menu)

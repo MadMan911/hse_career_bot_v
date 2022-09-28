@@ -25,37 +25,69 @@ def try_to_buy_merch(message, merch_name):
                 student.bought_merch += f'<b>Невероятная HSE кружка 💥</b>\n'
                 Session.commit()
                 bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть: \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
-    
-        elif merch_name.lower() == 'tshirt':
-            if balance < cup_price:
+
+        elif merch_name.lower() == 'tshirtblack':
+            if balance < tshirt_price:
                  bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
             else:
-                student.balance -= cup_price
+                student.balance -= tshirt_price
+                student.merch_buy_ability_amt -= 1
+                student.bought_merch += f'<b>Крутейшая черная HSE футболка 🔥</b>\n'
+                Session.commit()
+                bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}',
+                                 parse_mode='HTML', reply_markup=keyboard_back_menu)
+
+        elif merch_name.lower() == 'tshirtblue':
+            if balance < tshirt_price:
+                bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это',
+                                 reply_markup=keyboard_back_menu)
+            else:
+                student.balance -= tshirt_price
                 student.merch_buy_ability_amt -= 1 
-                student.bought_merch += f'<b>крутейшая HSE футболка 🔥</b>\n'
+                student.bought_merch += f'<b>Крутейшая синяя HSE футболка 🔥</b>\n'
                 Session.commit()
                 bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
     
         elif merch_name.lower() == 'hudi':
-            if balance < cup_price:
+            if balance < hudi_price:
                  bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
             else:
-                student.balance -= cup_price
+                student.balance -= hudi_price
                 student.merch_buy_ability_amt -= 1
                 student.bought_merch += f'<b>Неотразимый HSE свитшот 🌲</b>\n'
                 Session.commit()
                 bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
     
         elif merch_name.lower() == 'shopper':
-            if balance < cup_price:
+            if balance < shoper_price:
                  bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
             else:
-                student.balance -= cup_price
+                student.balance -= shoper_price
                 student.merch_buy_ability_amt -= 1 
                 student.bought_merch += f'<b>Самый удобный HSE шоппер ☀</b>\n'
                 Session.commit()
                 bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
-    
+        elif merch_name.lower() == 'bottle':
+            if balance < bottle_price:
+                 bot.send_message(message.chat.id, 'У вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
+            else:
+                student.balance -= bottle_price
+                student.merch_buy_ability_amt -= 1
+                student.bought_merch += f'<b>Крутейшая HSE бутылка 🔥</b>\n'
+                Session.commit()
+                bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+
+        elif merch_name.lower() == 'termocup':
+            if balance < bottle_price:
+                 bot.send_message(message.chat.id, 'Извините, у вас недостаточно коинов, чтобы купить это', reply_markup=keyboard_back_menu)
+            else:
+                student.balance -= bottle_price
+                student.merch_buy_ability_amt -= 1
+                student.bought_merch += f'<b>Крутейшая HSE термокружка 🔥</b>\n'
+                Session.commit()
+                bot.send_message(message.chat.id, f'Поздравляю с покупкой, теперь у вас есть \n{student.bought_merch}', parse_mode='HTML', reply_markup=keyboard_back_menu)
+
+
     update_phase(message, READY)
     return
    

@@ -10,7 +10,7 @@ default_balance = 2
 
 REG, GIVE_PROMO, ENTER_PROMO, READY, CHANGE_REG_1, CHANGE_REG_2, READY_2, ASSESS, MAKE_ORDER, BUY_MERCH_1, BUY_MERCH_2 = range(11)
 mail_pattern = '[a-zA-Z0-9\-._]{3,25}@(gmail|mail|ya|yandex|yahoo|outlook|hse|edu\.hse|)\.(ru|net|com|ua)'
-cup_price, tshirt_price, hudi_price, shoper_price = 10, 20, 30, 15
+cup_price, tshirt_price, hudi_price, shoper_price, termocup_price, bottle_price = 10, 20, 30, 15, 15, 10
 # READY_2 - промежуточное состояние, откуда можно перейти к оценке компаний + посмотреть каталог мерча
 
 
@@ -42,8 +42,7 @@ info = 'Неделя Карьеры ВШБ проводится на нашем 
        'зарегистрированного в боте участника будет свой виртуальный счет с валютой ВШБ - <b>коинами</b>. Проявляя ' \
        'активность на вебинарах, ты сможешь заработать больше коинов. По окончании Недели Карьеры ты сможешь ' \
        'обменять их на <b>мерч</b> Высшей Школы Бизнеса (кружки, свитшоты, блокноты, шоперы😉). \n\nС помощью бота ' \
-       'ты можешь отслеживать свой баланс, смотреть ' \
-       'актуальную' \
+       'ты можешь отслеживать свой баланс, смотреть актуальную' \
        ' программу мероприятий и регистрироваться на них, а также читать информацию компаниях-партнерах ВШБ!\n\n'
 help_message = 'По вопросам, связанным с Неделей Карьеры, пиши на почту careers@hse.ru\n' \
                'По вопросам работы с ботом обращайся к @GeNeratIoN_erRoRr '
@@ -73,11 +72,15 @@ keyboard_changes.add(b1, b2)
 
 keyboard_merch = types.InlineKeyboardMarkup(row_width=2)
 bm2 = types.InlineKeyboardButton(text='Кружка', callback_data='cup')
-bm3 = types.InlineKeyboardButton(text='Футболка', callback_data='tshirt')
-bm4 = types.InlineKeyboardButton(text='Свитшот', callback_data='hudi')
-bm5 = types.InlineKeyboardButton(text='Шопер', callback_data='shoper')
-bm6 = types.InlineKeyboardButton(text='Назад', callback_data='no_merch_needed')
-keyboard_merch.add( bm2, bm3, bm4, bm5, bm6,)
+bm3 = types.InlineKeyboardButton(text='Футболка Черная', callback_data='tshirt_black')
+bm4 = types.InlineKeyboardButton(text='Футболка Синяя', callback_data='tshirt_blue')
+bm5 = types.InlineKeyboardButton(text='Свитшот', callback_data='hudi')
+bm6 = types.InlineKeyboardButton(text='Шопер', callback_data='shoper')
+bm7 = types.InlineKeyboardButton(text='Назад', callback_data='no_merch_needed')
+bm8 = types.InlineKeyboardButton(text='Термокружка', callback_data='termocup')
+bm9 = types.InlineKeyboardButton(text='Бутылка', callback_data='bottle')
+keyboard_merch.add( bm2, bm3, bm4, bm5, bm6, bm8, bm9, bm7)
+
 
 
 def get_kb_companies():
@@ -105,15 +108,15 @@ keyboard_promo.add(types.InlineKeyboardButton(text='Да', callback_data='activa
                    types.InlineKeyboardButton(text='Нет', callback_data='skip_activate_promo'))
 
 keyboard_menu = types.InlineKeyboardMarkup(row_width=2)
-b1 = types.InlineKeyboardButton(text='Вебинары', callback_data='event_calendar')
+
 b2 = types.InlineKeyboardButton(text='Правила игры', callback_data='rules')
-b3 = types.InlineKeyboardButton(text='Работодатели', callback_data='companies')
+b3 = types.InlineKeyboardButton(text='Лекции и вебинары', callback_data='companies')
 b4 = types.InlineKeyboardButton(text='Мой баланс', callback_data='balance')
 b5 = types.InlineKeyboardButton(text='Ввести промокод', callback_data='activate_promo')
 b6 = types.InlineKeyboardButton(text='Информация о НК', callback_data='info')
 b7 = types.InlineKeyboardButton(text='Мой профиль', callback_data='change_reg')
 b8 = types.InlineKeyboardButton(text='Мерч', callback_data='clothes')
-keyboard_menu.add(b1, b2, b3, b4, b5, b6, b7, b8)
+keyboard_menu.add(b2, b3, b4, b5, b6, b7, b8)
 
 keyboard_menu_light = types.InlineKeyboardMarkup(row_width=2)
 keyboard_menu_light.add(b1, b2, b3, b4, b6, b7, b8)
