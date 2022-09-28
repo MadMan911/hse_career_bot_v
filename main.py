@@ -177,10 +177,7 @@ def handle_menu(call):
         bot.send_message(call.message.chat.id, rules, reply_markup=keyboard_back, parse_mode='MarkDown')
         print(f'Пользователь {Session.query(Student).get(call.message.chat.id)} посмотрел правила игры')
     elif call.data == 'companies':
-        bot.send_message(call.message.chat.id, 'Вот список компаний, сотрудничающих с ВШБ на осенней Неделе Карьеры. ',
-                                               'Расписание лекций:\n1C: 03.10.2022 14:15\nКРОК: 03.10.2022 15:30\nЦентр карьеры ВШБ: 03.10.2022\nСКОЛТЕХ: 04.10.2022\n Росэнергоатом: 06.10.2022'
-                                               '\nVK: 06.10.2022 15:30\nСБЕР: 06.10.2022 16:45\nАксТим (AxTeam) (Accenture): 06.10.2022 18:00',
-                                               'Нажмите на кнопку, чтобы почитать про компанию подробнее. ',
+        bot.send_message(call.message.chat.id, 'Вот список компаний, сотрудничающих с ВШБ на осенней Неделе Карьеры.\n\nРасписание лекций:\n1C: 03.10.2022 14:15\nКРОК: 03.10.2022 15:30\nЦентр карьеры ВШБ: 03.10.2022\nСКОЛТЕХ: 04.10.2022\n Росэнергоатом: 06.10.2022\nVK: 06.10.2022 15:30\nСБЕР: 06.10.2022 16:45\nАксТим (AxTeam) (Accenture): 06.10.2022 18:00\n\nНажмите на кнопку, чтобы почитать про компанию подробнее. ',
                          reply_markup=get_kb_companies())
         print(f'Пользователь {Session.query(Student).get(call.message.chat.id)} посмотрел список компаний')
     elif call.data == 'balance':
