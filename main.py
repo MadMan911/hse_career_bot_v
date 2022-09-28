@@ -240,7 +240,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         # bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот эта невероятная HSE кружка, цена <b>10 коинов</b>, берем?', reply_markup=keyboard_agree)
+        bot.send_message(call.message.chat.id, 'Вот эта невероятная HSE кружка, цена 10 коинов🌕, берем?😍😍😍', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
     elif call.data == 'tshirt_black':
@@ -249,7 +249,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         bot.send_photo(call.message.chat.id, img, )
-        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая черная HSE футболка, цена <b>20 коинов</b>, берем?',
+        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая черная HSE футболка, цена 20 коинов🌕, берем?😍😍😍',
                          reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
@@ -260,7 +260,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         bot.send_photo(call.message.chat.id, img, )
-        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая синяя HSE футболка, цена <b>20 коинов</b>, берем?',
+        bot.send_message(call.message.chat.id, 'Вот та самая крутейшая синяя HSE футболка, цена 20 коинов🌕, берем?😍😍😍',
                          reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
@@ -271,7 +271,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         bot.send_photo(call.message.chat.id, img, )
-        bot.send_message(call.message.chat.id, 'Вот то самое неотразимый HSE свитшот, цена <b>30 коинов</b>, берем?',
+        bot.send_message(call.message.chat.id, 'Вот то самое неотразимый HSE свитшот, цена 30 коинов🌕, берем?😍😍😍',
                          reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
@@ -282,7 +282,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         bot.send_photo(call.message.chat.id, img,)
-        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE шоппер, цена <b>15 коинов</b>, берем?', reply_markup=keyboard_agree)
+        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE шоппер, цена 15 коинов🌕, берем?😍😍😍', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
     elif call.data == 'bottle':
@@ -291,7 +291,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         bot.send_photo(call.message.chat.id, img, )
-        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE бутылка, цена <b>10 коинов</b>, берем?', reply_markup=keyboard_agree)
+        bot.send_message(call.message.chat.id, 'Вот тот самый удобный HSE бутылка, цена 10 коинов🌕, берем?😍😍😍', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
@@ -301,7 +301,7 @@ def buy_merch(call):
         keyboard_agree.add(btn1, btn2)
 
         bot.send_photo(call.message.chat.id, img, )
-        bot.send_message(call.message.chat.id, 'Вот та самая крутая HSE термокружка, цена <b>15 коинов</b>, берем?', reply_markup=keyboard_agree)
+        bot.send_message(call.message.chat.id, 'Вот та самая крутая HSE термокружка, цена 15 коинов🌕, берем?😍😍😍', reply_markup=keyboard_agree)
         update_phase(call.message, BUY_MERCH_2)
         return
 
