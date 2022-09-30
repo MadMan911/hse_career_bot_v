@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import telebot
 from data.config import *
 from functions import *
@@ -8,11 +10,7 @@ import traceback
 from create_database import create_database
 from data.students import Student
 
-
-
-
 bot = telebot.TeleBot(TOKEN)
-
 
 @bot.callback_query_handler(func=lambda call: call.data == 'go_to_final')
 def go_to_final(call):
@@ -20,13 +18,9 @@ def go_to_final(call):
     # update_phase(call.message, READY)
     if get_phase(call.message) > 2:
         update_phase(call.message, READY_2)
-        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-                              text=f'{call.message.text}', reply_markup=None)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f'{call.message.text}', reply_markup=None)
         bot.send_message(call.message.chat.id, final_intro)
-        bot.send_message(call.message.chat.id, f'Твой баланс составляет {student.get_balance_light()}.\n'
-                                               f'{student.wallets()}',
-                         reply_markup=keyboard_final, parse_mode='MarkDown')
-
+        bot.send_message(call.message.chat.id, f'Твой баланс составляет {student.get_balance_light()}.\n{student.wallets()}', reply_markup=keyboard_final, parse_mode='MarkDown')
 
 @bot.callback_query_handler(func=lambda call: get_phase(call.message) == -1)
 def handle_none_type(call):
@@ -177,7 +171,7 @@ def handle_menu(call):
         bot.send_message(call.message.chat.id, rules, reply_markup=keyboard_back, parse_mode='MarkDown')
         print(f'Пользователь {Session.query(Student).get(call.message.chat.id)} посмотрел правила игры')
     elif call.data == 'companies':
-        bot.send_message(call.message.chat.id, 'Вот список компаний, сотрудничающих с ВШБ на осенней Неделе Карьеры.\n\nРасписание лекций:\n1C: 03.10.2022 14:15\nКРОК: 03.10.2022 15:30\nЦентр карьеры ВШБ: 03.10.2022 16:45\nСКОЛТЕХ: 04.10.2022 14:15\n Росэнергоатом: 06.10.2022 14:15\nVK: 06.10.2022 15:30\nСБЕР: 06.10.2022 16:45\nАксТим (AxTeam) (Accenture): 06.10.2022 18:00\n\nНажмите на кнопку, чтобы почитать про компанию подробнее. ',
+        bot.send_message(call.message.chat.id, 'Вот список компаний, сотрудничающих с ВШБ на осенней Неделе Карьеры.\n\nРасписание лекций:\n1C: 03.10.2022 14:15\nКРОК: 03.10.2022 15:30\nЦентр карьеры ВШБ: 03.10.2022 16:45\nХ5 Retail Group (Много лосося): 03.10.2022 18:00 \nСКОЛТЕХ: 04.10.2022 14:15\nЭКОПСИ: 04.10.2022 15:30 \nРосэнергоатом: 06.10.2022 14:15\nVK: 06.10.2022 15:30\nСБЕР: 06.10.2022 16:45\nАксТим (AxTeam) (Accenture): 06.10.2022 18:00\n\nНажмите на кнопку, чтобы почитать про компанию подробнее. ',
                          reply_markup=get_kb_companies())
         print(f'Пользователь {Session.query(Student).get(call.message.chat.id)} посмотрел список компаний')
     elif call.data == 'balance':
@@ -389,9 +383,7 @@ def assess_1(call):
 
 if __name__ == '__main__':
     set_env_functions(bot)
-    db_is_created = os.path.exists(DATABASE_NAME)
-    if not db_is_created:
-        create_database()
+    create_database()
     
     print('Бот успешно запущен')
     while True:
